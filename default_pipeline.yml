@@ -12,7 +12,7 @@ working_directory: /scratch
 
 # path to skull template
 # only required if you have anatomical scans
-template_skull_for_anat: /usr/share/fsl/5.0/data/standard/MNI152_T1_2mm.nii.gz
+template_skull_for_anat: /qap_resources/qap_templates/MNI152_T1_2mm.nii.gz
 
 # exclude zero-value voxels from the background of the anatomical scan
 # this is meant for images that have been manually altered (ex. ears removed
