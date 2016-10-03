@@ -126,6 +126,6 @@ if args.analysis_level.lower() == 'participant':
     obj.run(config_file, subject_list_file)
 
 else:
-    print "Running group level analysis"
+    print "Running group level analysis to merge participant results"
     os.system('qap_merge_outputs.py %s'%c['output_directory'])
     print "finished"
