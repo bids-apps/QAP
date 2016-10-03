@@ -5,7 +5,8 @@ ENV AFNIPATH /opt/afni/bin/
 ENV PATH /code:/opt/afni/bin:/usr/local/bin/miniconda/bin:${PATH}
 
 # install dependencies
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update
+RUN apt-get install -y wget
 RUN apt-get install -y pkg-config graphviz gsl-bin \
     libexpat1-dev libgiftiio-dev libglu1-mesa libglu1-mesa-dev \
     libgsl0-dev libjpeg-progs libxml2 libxml2-dev libxext-dev \
@@ -20,7 +21,7 @@ RUN wget http://repo.continuum.io/miniconda/Miniconda-3.8.3-Linux-x86_64.sh && \
 
 # install python requirements
 RUN conda install -y pip scipy
-RUN pip install nipype nibabel nitime pyyaml pandas seaborn pyPdf2 xhtml2pdf indi-tools
+RUN pip install nipype nibabel nitime pyyaml pandas seaborn html5lib==1.0b8 pyPdf2 xhtml2pdf indi-tools
 
 RUN wget http://afni.nimh.nih.gov/pub/dist/tgz/linux_openmp_64.tgz && \
     tar xzvf linux_openmp_64.tgz && mkdir -p /opt/afni && \

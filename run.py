@@ -33,6 +33,10 @@ parser.add_argument('bids_dir', help='The directory with the input dataset '
     'formatted according to the BIDS standard.')
 parser.add_argument('output_dir', help='The directory where the output CSV '
     'files should be stored.')
+parser.add_argument('analysis_level', help='Level of the analysis that will '
+    ' be performed. Multiple participant level analyses can be run '
+    ' independently (in parallel) using the same output_dir.',
+    choices=['participant', 'group'])
 parser.add_argument('--participant_label', help='The label of the participant'
     ' that should be analyzed. The label '
     'corresponds to sub-<participant_label> from the BIDS spec '
@@ -46,6 +50,7 @@ parser.add_argument('--n_cpus', help='Number of execution '
     ' resources available for the pipeline', default="1")
 parser.add_argument('--save_working_dir', action='store_true',
     help='Save the contents of the working directory.', default=False)
+
 
 # get the command line arguments
 args = parser.parse_args()
@@ -68,50 +73,59 @@ else:
     c['write_all_outputs'] = False
     c['working_directory'] = create_dir('/tmp', "working")
 
+c['write_report'] = args.analysis_level.lower() == 'group'
+
 print ("#### Running QAP on %s"%(args.participant_label))
 print ("Number of subjects to run in parallel: %d"%(c['num_subjects_per_bundle']))
 print ("Output directory: %s"%(c['output_directory']))
 print ("Working directory: %s"%(c['working_directory']))
 print ("Save working directory: %s"%(c['write_all_outputs']))
 
-# read in the directory to find the input files
-subjects_to_analyze = []
 
-# only for a subset of subjects
-if args.participant_label:
-    subjects_to_analyze = args.participant_label.split(' ')
+if args.analysis_level.lower() == 'participant':
+    # read in the directory to find the input files
+    subjects_to_analyze = []
 
-# for all subjects
+    # only for a subset of subjects
+    if args.participant_label:
+        subjects_to_analyze = args.participant_label.split(' ')
+
+    # for all subjects
+    else:
+        subject_dirs = glob(os.path.join(args.bids_dir, "sub-*"))
+        subjects_to_analyze = \
+            [subject_dir.split("-")[-1] for subject_dir in subject_dirs]
+
+        
+    file_paths=[]
+
+    if args.participant_label:
+        for pt in args.participant_label.split(' '):
+            file_paths.append(glob(os.path.join(args.bids_dir,"sub-%s"%(pt),
+                "*","*","*.nii*")))
+    else:
+        file_paths=glob(os.path.join(args.bids_dir,"*","*","*","*.nii*"))
+
+
+    sub_list = extract_bids_data(file_paths)
+
+    ts = time.time()
+    st = datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d%H%M%S')
+    subject_list_file=os.path.join(args.output_dir,"bids_run_sublist_%s.yml"%(st))
+    with open(subject_list_file, 'w') as f:
+        yaml.dump(sub_list, f)
+
+    #update config file
+    config_file=os.path.join(args.output_dir,"bids_run_config_%s.yml"%(st))
+    with open(config_file, 'w') as f:
+        yaml.dump(c, f)
+
+    #build pipeline
+    from qap.cli import QAProtocolCLI
+    obj = QAProtocolCLI(parse_args=False)
+    obj.run(config_file, subject_list_file)
+
 else:
-    subject_dirs = glob(os.path.join(args.bids_dir, "sub-*"))
-    subjects_to_analyze = \
-        [subject_dir.split("-")[-1] for subject_dir in subject_dirs]
-
-    
-file_paths=[]
-
-if args.participant_label:
-    for pt in args.participant_label.split(' '):
-        file_paths.append(glob(os.path.join(args.bids_dir,"sub-%s"%(pt),
-            "*","*","*.nii*")))
-else:
-    file_paths=glob(os.path.join(args.bids_dir,"*","*","*","*.nii*"))
-
-
-sub_list = extract_bids_data(file_paths)
-
-ts = time.time()
-st = datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d%H%M%S')
-subject_list_file=os.path.join(args.output_dir,"bids_run_sublist_%s.yml"%(st))
-with open(subject_list_file, 'w') as f:
-    yaml.dump(sub_list, f)
-
-#update config file
-config_file=os.path.join(args.output_dir,"bids_run_config_%s.yml"%(st))
-with open(config_file, 'w') as f:
-    yaml.dump(c, f)
-
-#build pipeline
-from qap.cli import QAProtocolCLI
-obj = QAProtocolCLI(parse_args=False)
-obj.run(config_file, subject_list_file)
+    print "Running group level analysis"
+    os.system('qap_merge_outputs.py %s'%c['output_directory'])
+    print "finished"
