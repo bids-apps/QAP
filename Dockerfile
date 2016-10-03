@@ -47,10 +47,13 @@ RUN apt-get update && \
 RUN npm install -g bids-validator
 
 RUN mkdir /scratch && mkdir /local-scratch && mkdir -p /code && mkdir -p /qap_resources
+COPY qap_templates.tar.gz /qap_resources/qap_templates.tar.gz
 COPY default_pipeline.yml /qap_resources/default_pipeline.yml
-COPY bids_utils.py /code/bids_utils.py
 COPY run.py /code/run.py
-RUN chmod +x /code/run.py
+COPY bids_utils.py /code/bids_utils.py
+RUN chmod +x /code/run.py && cd /qap_resources \
+   && tar xzvf /qap_resources/qap_templates.tar.gz \
+   && rm -f /qap_resources/qap_templates.tar.gz
 
 
 ENTRYPOINT ["/code/run.py"]
