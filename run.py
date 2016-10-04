@@ -29,28 +29,43 @@ def run(command, env={}):
             break
 
 parser = argparse.ArgumentParser(description='PCP-QAP Pipeline Runner')
+
 parser.add_argument('bids_dir', help='The directory with the input dataset '
     'formatted according to the BIDS standard.')
+
 parser.add_argument('output_dir', help='The directory where the output CSV '
     'files should be stored.')
+
 parser.add_argument('analysis_level', help='Level of the analysis that will '
     ' be performed. Multiple participant level analyses can be run '
     ' independently (in parallel) using the same output_dir.',
     choices=['participant', 'group'])
+
 parser.add_argument('--participant_label', help='The label of the participant'
     ' that should be analyzed. The label '
     'corresponds to sub-<participant_label> from the BIDS spec '
     '(so it does not include "sub-"). If this parameter is not '
     'provided all subjects should be analyzed. Multiple '
     'participants can be specified with a space separated list.', nargs="+")
+
 parser.add_argument('--pipeline_file', help='Name for the pipeline '
     ' configuration file to use',
     default="/qap_resources/default_pipeline.yml")
+
 parser.add_argument('--n_cpus', help='Number of execution '
     ' resources available for the pipeline', default="1")
+
+parser.add_argument('--n_cpus', help='Number of execution '
+    ' resources available for the pipeline', default="1")
+
+parser.add_argument('--mem', help='Amount of RAM available '
+    ' to the pipeline in GB', default="6")
+
 parser.add_argument('--save_working_dir', action='store_true',
     help='Save the contents of the working directory.', default=False)
 
+parser.add_argument('--report', action='store_true', help='Generates pdf '
+    'for graphically assessing data quality.', default=False)
 
 # get the command line arguments
 args = parser.parse_args()
@@ -73,7 +88,10 @@ else:
     c['write_all_outputs'] = False
     c['working_directory'] = create_dir('/tmp', "working")
 
-c['write_report'] = args.analysis_level.lower() == 'group'
+c['write_report'] = args.report
+c['num_processors'] = int(args.n_cpus)
+c['memory_allocated'] = int(args.mem)
+
 
 print ("#### Running QAP on %s"%(args.participant_label))
 print ("Number of subjects to run in parallel: %d"%(c['num_subjects_per_bundle']))
