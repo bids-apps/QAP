@@ -38,7 +38,9 @@ parser.add_argument('output_dir', help='The directory where the output CSV '
 
 parser.add_argument('analysis_level', help='Level of the analysis that will '
     ' be performed. Multiple participant level analyses can be run '
-    ' independently (in parallel) using the same output_dir.',
+    ' independently (in parallel) using the same output_dir.  Group level'
+    ' analysis compiles multiple participant level quality metrics into'
+    'group-level csv files.',
     choices=['participant', 'group'])
 
 parser.add_argument('--participant_label', help='The label of the participant'
@@ -49,17 +51,15 @@ parser.add_argument('--participant_label', help='The label of the participant'
     'participants can be specified with a space separated list.', nargs="+")
 
 parser.add_argument('--pipeline_file', help='Name for the pipeline '
-    ' configuration file to use',
+    ' configuration file to use, uses a default configuration if not'
+    ' specified',
     default="/qap_resources/default_pipeline.yml")
 
 parser.add_argument('--n_cpus', help='Number of execution '
-    ' resources available for the pipeline', default="1")
-
-parser.add_argument('--n_cpus', help='Number of execution '
-    ' resources available for the pipeline', default="1")
+    ' resources available for the pipeline, default=1', default="1")
 
 parser.add_argument('--mem', help='Amount of RAM available '
-    ' to the pipeline in GB', default="6")
+    ' to the pipeline in GB, default = 6', default="6")
 
 parser.add_argument('--save_working_dir', action='store_true',
     help='Save the contents of the working directory.', default=False)

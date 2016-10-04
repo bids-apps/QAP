@@ -15,28 +15,25 @@ This App has the following command line arguments:
 
     usage: run.py [-h]
                   [--participant_label PARTICIPANT_LABEL [PARTICIPANT_LABEL ...]]
-                  [--pipeline_file PIPELINE_FILE] [--n_cpus N_CPUS]
-                  [--save_working_dir] [--group_level_report]
-                  bids_dir output_dir
-
+                  [--pipeline_file PIPELINE_FILE] [--n_cpus N_CPUS] [--mem MEM]
+                  [--save_working_dir] [--report]
+                  bids_dir output_dir {participant,group}
+    
     PCP-QAP Pipeline Runner
-
+    
     positional arguments:
       bids_dir              The directory with the input dataset formatted
                             according to the BIDS standard.
-                            
       output_dir            The directory where the output CSV files should be
                             stored.
-
       {participant,group}   Level of the analysis that will be performed. Multiple
                             participant level analyses can be run independently
-                            (in parallel). Group level analysis compiles the 
-                            participant level quality metrics into group-level
-                            csv files.
-                            
+                            (in parallel) using the same output_dir. Group level
+                            analysis compiles multiple participant level quality
+                            metrics intogroup-level csv files.
+    
     optional arguments:
       -h, --help            show this help message and exit
-      
       --participant_label PARTICIPANT_LABEL [PARTICIPANT_LABEL ...]
                             The label of the participant that should be analyzed.
                             The label corresponds to sub-<participant_label> from
@@ -44,20 +41,14 @@ This App has the following command line arguments:
                             parameter is not provided all subjects should be
                             analyzed. Multiple participants can be specified with
                             a space separated list.
-                            
       --pipeline_file PIPELINE_FILE
                             Name for the pipeline configuration file to use, uses
                             a default configuration if not specified
-                            
-                             
       --n_cpus N_CPUS       Number of execution resources available for the
                             pipeline, default=1
-                            
-      --mem                 Amount of RAM available to the pipeline in GB
-                            default="6"
-                                                        
+      --mem MEM             Amount of RAM available to the pipeline in GB, default
+                            = 6
       --save_working_dir    Save the contents of the working directory.
-      
       --report              Generates pdf for graphically assessing data quality.
 
 
