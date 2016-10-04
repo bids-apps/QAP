@@ -35,7 +35,7 @@ RUN wget http://afni.nimh.nih.gov/pub/dist/tgz/linux_openmp_64.tgz && \
 
 #install latest version of qap
 RUN cd /tmp/ && \
-    git clone -b 1.0.7 https://github.com/preprocessed-connectomes-project/quality-assessment-protocol.git && \
+    git clone -b 1.0.8 https://github.com/preprocessed-connectomes-project/quality-assessment-protocol.git && \
     cd quality-assessment-protocol && python setup.py build && python setup.py install
 
 ## Install the validator
