@@ -101,32 +101,20 @@ print ("Save working directory: %s"%(c['write_all_outputs']))
 
 
 if args.analysis_level.lower() == 'participant':
-    # read in the directory to find the input files
-    subjects_to_analyze = []
-
-    # only for a subset of subjects
-    if args.participant_label:
-        subjects_to_analyze = args.participant_label.split(' ')
-
-    # for all subjects
-    else:
-        subject_dirs = glob(os.path.join(args.bids_dir, "sub-*"))
-        subjects_to_analyze = \
-            [subject_dir.split("-")[-1] for subject_dir in subject_dirs]
-
-        
+       
     file_paths=[]
 
     if args.participant_label:
-        for pt in args.participant_label.split(' '):
-            file_paths.append(glob(os.path.join(args.bids_dir,"sub-%s"%(pt),
-                "*","*","*.nii*")))
+        for pt in args.participant_label:
+            file_paths+=glob(os.path.join(args.bids_dir,"sub-%s"%(pt),
+                "*","*.nii*"))+glob(os.path.join(args.bids_dir,"sub-%s"%(pt),
+                "*","*","*.nii*"))
     else:
-        file_paths=glob(os.path.join(args.bids_dir,"*","*","*","*.nii*"))
-
+        file_paths=glob(os.path.join(args.bids_dir,"*","*.nii*"))+\
+                   glob(os.path.join(args.bids_dir,"*","*","*.nii*"))
 
     sub_list = extract_bids_data(file_paths)
-
+ 
     ts = time.time()
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d%H%M%S')
     subject_list_file=os.path.join(args.output_dir,"bids_run_sublist_%s.yml"%(st))

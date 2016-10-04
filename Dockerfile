@@ -23,6 +23,11 @@ RUN wget http://repo.continuum.io/miniconda/Miniconda-3.8.3-Linux-x86_64.sh && \
 RUN conda install -y pip scipy
 RUN pip install nipype nibabel nitime pyyaml pandas seaborn html5lib==1.0b8 pyPdf2 xhtml2pdf indi-tools
 
+# the first time nipype runs it will create a configuration directory, do it here
+# to avoid problems in the future
+RUN /usr/local/bin/miniconda/bin/python -c "import nipype" 2> /dev/null
+
+# install afni
 RUN wget http://afni.nimh.nih.gov/pub/dist/tgz/linux_openmp_64.tgz && \
     tar xzvf linux_openmp_64.tgz && mkdir -p /opt/afni && \
     mv linux_openmp_64/ /opt/afni/bin && \
@@ -32,10 +37,6 @@ RUN wget http://afni.nimh.nih.gov/pub/dist/tgz/linux_openmp_64.tgz && \
 RUN cd /tmp/ && \
     git clone -b 1.0.7 https://github.com/preprocessed-connectomes-project/quality-assessment-protocol.git && \
     cd quality-assessment-protocol && python setup.py build && python setup.py install
-
-
-# don't forget ipython!
-RUN conda install ipython
 
 ## Install the validator
 RUN apt-get update && \

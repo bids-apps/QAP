@@ -72,7 +72,7 @@ def extract_bids_data( file_path_list, inclusion_list=None ):
 
         # straighten out the session
         if "ses" not in f_dict.keys():
-            f_dict["ses"] = 1
+            f_dict["ses"] = "1"
 
         # determine whether the scan is anatomical or functional, we don't know how to handle anything but T1w
         # and BOLD for now
