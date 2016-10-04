@@ -4,6 +4,8 @@ num_subjects_per_bundle: 1
 num_processors: 1
 memory_allocated: 2
 
+pipeline_name: QAP_bids_app_default
+
 # which resource manager being used, if any
 resource_manager: None
 
