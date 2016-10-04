@@ -78,11 +78,18 @@ Please report errors on the [QAP github page](https://github.com/preprocessed-co
 
 We currently have a publication in preparation, in the meantime please cite our poster from INCF:
 
-    Shehzad Z, Giavasis S, Li Q, Benhajali Y, Yan C, Yang Z, Milham M, Bellec P and Craddock C (2015). The Preprocessed Connectomes Project Quality Assessment Protocol - a resource for measuring the quality of MRI data.. Front. Neurosci. Conference Abstract: Neuroinformatics 2015. doi: 10.3389/conf.fnins.2015.91.00047
+    Shehzad Z, Giavasis S, Li Q, Benhajali Y, Yan C, Yang Z, Milham M, Bellec P
+    and Craddock C (2015). The Preprocessed Connectomes Project Quality 
+    Assessment Protocol - a resource for measuring the quality of MRI data.. 
+    Front. Neurosci. Conference Abstract: Neuroinformatics 2015. doi: 
+    10.3389/conf.fnins.2015.91.00047
 
     @ARTICLE{shehzad2015,
-        AUTHOR={Shehzad, Zarrar  and  Giavasis, Steven  and  Li, Qingyang  and  Benhajali, Yassine  and  Yan, Chaogan  and  Yang, Zhen  and  Milham, Michael  and  Bellec, Pierre  and  Craddock, Cameron},   
-        TITLE={The Preprocessed Connectomes Project Quality Assessment Protocol - a resource for measuring the quality of MRI data.},      
+        AUTHOR={Shehzad, Zarrar  and  Giavasis, Steven  and  Li, Qingyang  and
+          Benhajali, Yassine  and  Yan, Chaogan  and  Yang, Zhen  and  Milham, 
+          Michael  and  Bellec, Pierre  and  Craddock, Cameron},   
+        TITLE={The Preprocessed Connectomes Project Quality Assessment Protocol
+         - a resource for measuring the quality of MRI data.},      
         JOURNAL={Frontiers in Neuroscience},      
         VOLUME={},      
         YEAR={},      
