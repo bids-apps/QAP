@@ -1,10 +1,14 @@
-# how many participants to run per workflow
-num_subjects_per_bundle: 1
-
-num_processors: 1
-memory_allocated: 2
-
+# name for this run
 pipeline_name: QAP_bids_app_default
+
+# how many processors you wish to use in the run
+num_processors: 1
+
+# how many participants to run per workflow
+num_participants_at_once: 1
+
+# the amount of memory (in GB) to allocate to each participant
+memory_allocated_per_participant: 2
 
 # which resource manager being used, if any
 resource_manager: None
@@ -17,7 +21,7 @@ working_directory: /scratch
 
 # path to skull template
 # only required if you have anatomical scans
-template_skull_for_anat: /qap_resources/qap_templates/MNI152_T1_2mm.nii.gz
+template_head_for_anat: /qap_resources/qap_templates/MNI152_T1_2mm.nii.gz
 
 # exclude zero-value voxels from the background of the anatomical scan
 # this is meant for images that have been manually altered (ex. ears removed
