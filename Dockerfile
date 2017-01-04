@@ -20,8 +20,8 @@ RUN wget http://repo.continuum.io/miniconda/Miniconda-3.8.3-Linux-x86_64.sh && \
     rm -rf Miniconda-3.8.3-Linux-x86_64.sh && python -v
 
 # install python requirements
-RUN conda install -y pip scipy
-RUN pip install nipype nibabel nitime pyyaml pandas seaborn html5lib==1.0b8 pyPdf2 xhtml2pdf indi-tools
+RUN conda install -y pip scipy lockfile
+RUN pip install nipype nibabel nitime pyyaml pandas seaborn html5lib==1.0b10 pyPdf2 xhtml2pdf indi-tools ConfigParser
 
 # the first time nipype runs it will create a configuration directory, do it here
 # to avoid problems in the future
