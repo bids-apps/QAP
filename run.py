@@ -111,7 +111,7 @@ if args.analysis_level.lower() == 'participant':
                 "*","*","*.nii*"))
     else:
         file_paths=glob(os.path.join(args.bids_dir,"*","*.nii*"))+\
-                   glob(os.path.join(args.bids_dir,"*","*","*.nii*"))\
+                   glob(os.path.join(args.bids_dir,"*","*","*.nii*"))+\
                    glob(os.path.join(args.bids_dir,"*","*","*","*.nii*"))
 
     sub_list = extract_bids_data(file_paths)
