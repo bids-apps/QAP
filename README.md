@@ -1,16 +1,17 @@
 # QAP BIDS Application
 
 ## Documentation
+
 Extensive information can be found in the [Quality Assessment Protocol](http://preprocessed-connectomes-project.org/quality-assessment-protocol/) webpage.
 
 ## Description
+
 Various objective measures for MRI data quality have been proposed over the years. However, until now no software has allowed researchers to obtain all these measures in the same place with relative ease. The [Quality Assessment Protocol](http://preprocessed-connectomes-project.org/quality-assessment-protocol/) package allows you to obtain spatial and anatomical data quality measures for your own data. Reports can optionally be generated that provide a variety of data visualizations to aid with quality assessment. 
 
 This container calculates dataset level quality assessment metrics of structural and functional MRI data when run in "participant" mode and compiles the outputs of many different participants outputs into single CSV files when run in "group" mode.
 
-
-
 ### Usage
+
 This App has the following command line arguments:
 
     usage: run.py [-h]
