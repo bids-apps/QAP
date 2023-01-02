@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-MAINTAINER John Pellman <john.pellman@childmind.org>
+LABEL John Pellman <john.pellman@childmind.org>
 
 ENV AFNIPATH /opt/afni/bin/
 ENV PATH /code:/opt/afni/bin:/usr/local/bin/miniconda/bin:${PATH}
