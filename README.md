@@ -6,7 +6,7 @@ Extensive information can be found in the [Quality Assessment Protocol](http://p
 
 ## Description
 
-Various objective measures for MRI data quality have been proposed over the years. However, until now no software has allowed researchers to obtain all these measures in the same place with relative ease. The [Quality Assessment Protocol](http://preprocessed-connectomes-project.org/quality-assessment-protocol/) package allows you to obtain spatial and anatomical data quality measures for your own data. Reports can optionally be generated that provide a variety of data visualizations to aid with quality assessment. 
+Various objective measures for MRI data quality have been proposed over the years. However, until now no software has allowed researchers to obtain all these measures in the same place with relative ease. The [Quality Assessment Protocol](http://preprocessed-connectomes-project.org/quality-assessment-protocol/) package allows you to obtain spatial and anatomical data quality measures for your own data. Reports can optionally be generated that provide a variety of data visualizations to aid with quality assessment.
 
 This container calculates dataset level quality assessment metrics of structural and functional MRI data when run in "participant" mode and compiles the outputs of many different participants outputs into single CSV files when run in "group" mode.
 
@@ -19,9 +19,9 @@ This App has the following command line arguments:
                   [--pipeline_file PIPELINE_FILE] [--n_cpus N_CPUS] [--mem MEM]
                   [--save_working_dir] [--report]
                   bids_dir output_dir {participant,group}
-    
+
     PCP-QAP Pipeline Runner
-    
+
     positional arguments:
       bids_dir              The directory with the input dataset formatted
                             according to the BIDS standard.
@@ -32,7 +32,7 @@ This App has the following command line arguments:
                             (in parallel) using the same output_dir. Group level
                             analysis compiles multiple participant level quality
                             metrics intogroup-level csv files.
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       --participant_label PARTICIPANT_LABEL [PARTICIPANT_LABEL ...]
@@ -70,7 +70,7 @@ To run all subjects and generate the group level analysis report:
         -v /Users/filo/outputs:/outputs \
         bids-apps/qap:v1.0.0 \
         /bids_dataset /outputs group
-        
+
 ## Reporting errors and getting help
 
 Please report errors on the [QAP github page](https://github.com/preprocessed-connectomes-project/quality-assessment-protocol) issue tracker. Please use the [PCP google group](https://groups.google.com/forum/#!forum/pcp_forum) for help using C-PAC and this application.
@@ -80,23 +80,23 @@ Please report errors on the [QAP github page](https://github.com/preprocessed-co
 We currently have a publication in preparation, in the meantime please cite our poster from INCF:
 
     Shehzad Z, Giavasis S, Li Q, Benhajali Y, Yan C, Yang Z, Milham M, Bellec P
-    and Craddock C (2015). The Preprocessed Connectomes Project Quality 
-    Assessment Protocol - a resource for measuring the quality of MRI data.. 
-    Front. Neurosci. Conference Abstract: Neuroinformatics 2015. doi: 
+    and Craddock C (2015). The Preprocessed Connectomes Project Quality
+    Assessment Protocol - a resource for measuring the quality of MRI data..
+    Front. Neurosci. Conference Abstract: Neuroinformatics 2015. doi:
     10.3389/conf.fnins.2015.91.00047
 
     @ARTICLE{shehzad2015,
         AUTHOR={Shehzad, Zarrar  and  Giavasis, Steven  and  Li, Qingyang  and
-          Benhajali, Yassine  and  Yan, Chaogan  and  Yang, Zhen  and  Milham, 
-          Michael  and  Bellec, Pierre  and  Craddock, Cameron},   
+          Benhajali, Yassine  and  Yan, Chaogan  and  Yang, Zhen  and  Milham,
+          Michael  and  Bellec, Pierre  and  Craddock, Cameron},
         TITLE={The Preprocessed Connectomes Project Quality Assessment Protocol
-         - a resource for measuring the quality of MRI data.},      
-        JOURNAL={Frontiers in Neuroscience},      
-        VOLUME={},      
-        YEAR={},      
-        NUMBER={47},     
-        URL={http://www.frontiersin.org/neuroscience/10.3389/conf.fnins.2015.91.00047/full},       
-        DOI={10.3389/conf.fnins.2015.91.00047},      
-        ISSN={1662-453X} ,      
+         - a resource for measuring the quality of MRI data.},
+        JOURNAL={Frontiers in Neuroscience},
+        VOLUME={},
+        YEAR={},
+        NUMBER={47},
+        URL={http://www.frontiersin.org/neuroscience/10.3389/conf.fnins.2015.91.00047/full},
+        DOI={10.3389/conf.fnins.2015.91.00047},
+        ISSN={1662-453X} ,
         ABSTRACT={}
      }

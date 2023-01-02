@@ -1,3 +1,4 @@
+---
 # how many participants to run per workflow
 num_subjects_per_bundle: 1
 
@@ -10,7 +11,7 @@ pipeline_name: QAP_bids_app_default
 resource_manager: None
 
 # where to place output files
-output_directory: /output 
+output_directory: /output
 
 # where to place Nipype workflow working files
 working_directory: /scratch
@@ -24,7 +25,7 @@ template_skull_for_anat: /qap_resources/qap_templates/MNI152_T1_2mm.nii.gz
 # for privacy considerations), where the artificial inclusion of zeros into
 # the image would skew the QAP metric results
 # (optional) will default to False if not included in this config file
-exclude_zeros: False
+exclude_zeros: false
 
 # for functional timeseries, do not include timepoints before this
 # (optional) will default to 0 if not included in this config file
@@ -37,15 +38,15 @@ stop_idx: End
 
 # produce PDF reports visualizing the results of the QAP metrics
 # (optional) will default to False if not included in this config file
-write_report: False
+write_report: false
 
 # produce workflow dependency graphs
 # (optional) will default to False if not included in this config file
-write_graph: False
+write_graph: false
 
 # whether or not to keep all output files, or only the QAP numbers CSVs
 # (optional) will default to False if not included in this config file
-write_all_outputs: False
+write_all_outputs: false
 
 # AWS Cloud Settings
 ####################
@@ -53,7 +54,7 @@ write_all_outputs: False
 # all optional
 
 # whether or not to upload output files to S3 bucket
-upload_to_s3: False
+upload_to_s3: false
 
 # bucket prefix (where to pull data from in S3, if applicable)
 bucket_prefix: bucket/prefix/path

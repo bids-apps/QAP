@@ -101,7 +101,7 @@ print ("Save working directory: %s"%(c['write_all_outputs']))
 
 
 if args.analysis_level.lower() == 'participant':
-       
+
     file_paths=[]
 
     if args.participant_label:
@@ -114,7 +114,7 @@ if args.analysis_level.lower() == 'participant':
                    glob(os.path.join(args.bids_dir,"*","*","*.nii*"))
 
     sub_list = extract_bids_data(file_paths)
- 
+
     ts = time.time()
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d%H%M%S')
     subject_list_file=os.path.join(args.output_dir,"bids_run_sublist_%s.yml"%(st))

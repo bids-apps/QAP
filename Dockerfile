@@ -59,6 +59,3 @@ RUN chmod +x /code/run.py && cd /qap_resources \
 
 
 ENTRYPOINT ["/code/run.py"]
-
-
-
