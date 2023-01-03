@@ -5,8 +5,8 @@ ENV AFNIPATH /opt/afni/bin/
 ENV PATH /code:/opt/afni/bin:/usr/local/bin/miniconda/bin:${PATH}
 
 # install dependencies
-RUN apt-get update --q && \
-    apt-get install --no-install-recommends -y \
+RUN apt-get update -qq && \
+    apt-get install -q --no-install-recommends -y \
             wget \
             pkg-config \
             graphviz \
