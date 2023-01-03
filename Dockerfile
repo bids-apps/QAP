@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:jammy
 # LABEL John Pellman <john.pellman@childmind.org>
 
 ARG DEBIAN_FRONTEND="noninteractive"
@@ -72,7 +72,9 @@ RUN wget --progress=dot:giga http://afni.nimh.nih.gov/pub/dist/tgz/linux_openmp_
 #install latest version of qap
 RUN cd /tmp/ && \
     git clone -b 1.0.8 https://github.com/preprocessed-connectomes-project/quality-assessment-protocol.git && \
-    cd quality-assessment-protocol && python setup.py build && python setup.py install
+    cd quality-assessment-protocol && \
+    python setup.py build && \
+    python setup.py install
 
 ## Install the validator
 RUN apt-get update -qq && \
