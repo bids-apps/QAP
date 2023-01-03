@@ -1,5 +1,7 @@
 FROM ubuntu:trusty
-LABEL John Pellman <john.pellman@childmind.org>
+# LABEL John Pellman <john.pellman@childmind.org>
+
+ARG DEBIAN_FRONTEND="noninteractive"
 
 ENV AFNIPATH /opt/afni/bin/
 ENV PATH /code:/opt/afni/bin:/usr/local/bin/miniconda/bin:${PATH}
@@ -43,8 +45,9 @@ RUN wget --progress=dot:giga http://repo.continuum.io/miniconda/Miniconda-3.8.3-
     rm -rf Miniconda-3.8.3-Linux-x86_64.sh && python -v
 
 # install python requirements
-RUN conda install -y pip scipy
-RUN pip install \
+RUN conda install -y pip scipy && \
+    pip install --upgrade pip && \
+    pip install \
         nipype \
         nibabel \
         nitime \
